@@ -3,10 +3,9 @@ set noswapfile
 set t_Co=256
 "" SHOW TABS FROM HELL
 set listchars=trail:~,tab:__,eol:;    " ,extends:>,precedes:<,nbsp:_
-set list
+set nolist
 set nowrap
-""set colorcolumn=128
-
+""set colorcolumn=128 
 set foldcolumn=0
 set foldmethod=manual
 set foldlevel=666
@@ -14,6 +13,7 @@ set foldlevel=666
 set expandtab " convert tabs to spaces
 set shiftwidth=2 " set tab width
 set tabstop=2
+filetype indent on
 ""set autoindent
 
 set ruler " line number in statusline
@@ -21,6 +21,8 @@ set ruler " line number in statusline
 "" fugitive (GIT plugin for VIM) additional info in the status line
 ""set statusline+=%{fugitive#statusline()}
 
+""runtime path
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 "" add syntax check info in status line
 ""set statusline+=%#warningmsg#
@@ -105,14 +107,18 @@ if has("wildmenu")
   " ignore medias "
   set wildignore+=*.png,*.bmp,*.jpg,*.gif,*.swf,*.mp3,*.mp4
   " ignore other crap files "
-  set wildignore+=*.md,*.lock,tutorial/**,vendor/**,*.swp,*.min.js,*.css,*demo*/**,*.xml
+  set wildignore+=*.md,*.lock,tutorial/**,vendor/**,*.swp,*.min.js,*demo*/**,*.xml
   " ignore node modules "
   set wildignore+=node_modules/**
 endif
 
+"" - - - - - - - - - - - - - - - >  CTRLP   < - - - - - - - - - - - - - - - "
+let g:ctrlp_custom_ignore = '(node_modules|bower_components)'
+"" - - - - - - - - - - - - - - - >  CTRLP   < - - - - - - - - - - - - - - - "
+
 "" - - - - - - - - - - - - - - - > COMMANDT < - - - - - - - - - - - - - - - "
-let g:CommandTMaxHeight=15
-map <Leader>f :CommandT /home/remy/git/esl.frontend<CR>
+""let g:CommandTMaxHeight=15
+"map <Leader>f :CommandT /home/remy/git/esl.frontend<CR>
 "" - - - - - - - - - - - - - - - > COMMANDT < - - - - - - - - - - - - - - - "
 
 map <Leader>F :CommandTFlush<CR>
@@ -133,7 +139,7 @@ map <Leader>r :call Refresh_firefox()<CR>
 "" color and indent json files using PYTHON
 ""map <Leader>TJ :%!python -m json.tool<CR>:colors json<CR>
 map <Leader>k :cclose<CR>
-map <Leader>a :NERDTree /home/dyne/git<CR>
+map <Leader>a :NERDTree /home/ry/git<CR>
 
 function! json:format ()
   :%!python -m json.tool
