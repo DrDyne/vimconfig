@@ -104,91 +104,79 @@ if has("wildmenu")
   set wildignore+=*.o,*.obj
   " ignore svn/git files "
   set wildignore+=*.svn,*.git
-  " ignore medias "
-  set wildignore+=*.png,*.bmp,*.jpg,*.gif,*.swf,*.mp3,*.mp4
+  " ignore media: images "
+  ""set wildignore+=*.png,*.bmp,*.jpg,*.gif,*.swf
+  " ignore media: sounds "
+  set wildignore+=*.mp3,*.mp4
   " ignore other crap files "
-  set wildignore+=*.md,*.lock,tutorial/**,vendor/**,*.swp,*.min.js,*demo*/**,*.xml
+  set wildignore+=*.md,*.lock,tutorial/**,vendor/**,*.swp,*demo*/**,*.xml
+  " ignore minified files "
+  ""set wildignore+=*.min.js
   " ignore node modules "
   set wildignore+=node_modules/**
 endif
 
 "" - - - - - - - - - - - - - - - >  CTRLP   < - - - - - - - - - - - - - - - "
-let g:ctrlp_custom_ignore = '(node_modules|bower_components)'
+let g:ctrlp_custom_ignore = '.*(node_modules\/.*|bower_components\/.*|fonts\/.*|images\/.*|.git\/.*|.*\.map)'
 "" - - - - - - - - - - - - - - - >  CTRLP   < - - - - - - - - - - - - - - - "
 
 "" - - - - - - - - - - - - - - - > COMMANDT < - - - - - - - - - - - - - - - "
 ""let g:CommandTMaxHeight=15
-"map <Leader>f :CommandT /home/remy/git/esl.frontend<CR>
+""map <Leader>f :CommandT /home/remy/git/esl.frontend<CR>
+""map <Leader>F :CommandTFlush<CR>
 "" - - - - - - - - - - - - - - - > COMMANDT < - - - - - - - - - - - - - - - "
 
-map <Leader>F :CommandTFlush<CR>
-map <Leader>b :buffers<CR>:buffer<Space>
 map <Leader>m :BufExplorer<CR>
-map <Leader>n :buffer<Space>
 map <Leader>[ :tabprevious<CR>
 map <Leader>] :tabnext<CR>
 map <Leader><Leader> :b#<CR>
 
-""map ,t :set expandtab<CR>:retab<CR>:%s/\s*$<CR>:%s///g<CR>:%s/\([^ ]\)\s*;\s*$/\1 ;/g<CR>
 map <Leader>t :%s/\t/  /g<CR>
 map <Leader>tt :%s/\s\+$<CR>
-map <Leader>ttt :%s/\r<CR>
+map <Leader>ttt :%s/\r<CR> "" removes  bad window line endings
 map <Leader>T :set expandtab<CR>:colors ry<CR>:retab<CR>
-map <Leader>r :call Refresh_firefox()<CR>
 
 "" color and indent json files using PYTHON
 ""map <Leader>TJ :%!python -m json.tool<CR>:colors json<CR>
 map <Leader>k :cclose<CR>
-map <Leader>a :NERDTree /home/ry/git<CR>
-
-function! json:format ()
-  :%!python -m json.tool
-endfunction
-
-
-
-"" GIT binding
-map <Leader>gs :Git status<CR>
-map <Leader>gls :Git ls<CR>
-map <Leader>ga :Gwrite<CR>
-map <Leader>gc :Gcommit<CR>
+map <Leader>a :NERDTreeToggle<CR>
+map <Leader>s :CtrlPMRU<CR>
+map <Leader>doc :JsDoc<CR>
+map <leader>doc ?function<cr>:noh<cr><Plug>(jsdoc)
 
 "" Documentation on how to write functions in .vimrc
 "" http://www.ibm.com/developerworks/linux/library/l-vim-script-2/index.html
 
-function! LineBreak80() "" helps to show where line should break
-  :%s/\(^.\{80\}\)/\1|/g
-endfunction 
-
-function! InviteLink ()
-  let line  = getline('.')
-  let line1 = substitute(line, 'http\(s\)\?\(:\/\/\|%3A%2F%2F\)', 'http://', 'g')
-  let new_line = substitute(line1, 'esl.silanis.com', '10.0.16.116', 'g')
-  call setline('.', new_line)
-endfunction
-
-function! esl:restartapache()
-  :! sudo service apache2 restart
-endfunction
-
-"" automatically precompile handlebars templates when saving handlebars files
-autocmd! BufWritePost *.handlebars call esl:refresh_templates()
-
-function! esl:refresh_templates()
-  :call esl:js:precompile()
-  :call Refresh_firefox()
-endfunction
-
-function! esl:js:precompile()
-  :! rake js:precompile
-endfunction
-
-function! esl:restart()
-  :call esl:js:precompile()
-  :call esl:restartapache()
-  :call Refresh_firefox()
-  :! cowsay "restarted ESL"
-endfunction
+"" function! LineBreak80() "" helps to show where line should break
+""   :%s/\(^.\{80\}\)/\1|/g
+"" endfunction 
+"" 
+"" function! InviteLink ()
+""   let line  = getline('.')
+""   let line1 = substitute(line, 'http\(s\)\?\(:\/\/\|%3A%2F%2F\)', 'http://', 'g')
+""   let new_line = substitute(line1, 'esl.silanis.com', '10.0.16.116', 'g')
+""   call setline('.', new_line)
+"" endfunction
+"" 
+"" function! esl:restartapache()
+""   :! sudo service apache2 restart
+"" endfunction
+"" 
+"" function! esl:refresh_templates()
+""   :call esl:js:precompile()
+""   :call Refresh_firefox()
+"" endfunction
+"" 
+"" function! esl:js:precompile()
+""   :! rake js:precompile
+"" endfunction
+"" 
+"" function! esl:restart()
+""   :call esl:js:precompile()
+""   :call esl:restartapache()
+""   :call Refresh_firefox()
+""   :! cowsay "restarted ESL"
+"" endfunction
 
 set cin
 syntax on

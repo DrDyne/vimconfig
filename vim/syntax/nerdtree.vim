@@ -33,6 +33,9 @@ syn match NERDTreeRO #.*\[RO\]#hs=s+2 contains=NERDTreeFlag,NERDTreeBookmark,NER
 "highlighting for sym links
 syn match NERDTreeLink #[^-| `].* -> # contains=NERDTreeBookmark,NERDTreeOpenable,NERDTreeClosable,NERDTreeDirSlash
 
+"highlighting for min files
+syn match NERDTreeMinFile #*.min*#
+
 "highlighing for directory nodes and file nodes
 syn match NERDTreeDirSlash #/#
 syn match NERDTreeDir #[^-| `].*/# contains=NERDTreeLink,NERDTreeDirSlash,NERDTreeOpenable,NERDTreeClosable
@@ -64,6 +67,7 @@ else
     hi def link NERDTreeClosable Title
 endif
 
+hi NERDTreeMinFile guifg=#f00054
 hi def link NERDTreeBookmarksHeader statement
 hi def link NERDTreeBookmarksLeader ignore
 hi def link NERDTreeBookmarkName Identifier

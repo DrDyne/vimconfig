@@ -2,8 +2,7 @@
   "" bold
   "" underline
   "" undercurl not always available
-  "" reverse
-  "" inverse   same as reverse
+  "" reverse "" inverse   same as reverse
   "" italic
   "" standout
   "" NONE    no attributes used (used to reset it)
@@ -19,7 +18,7 @@ syntax region javascriptComment     start="/\*"  end="\*/" contains=javaScriptCo
 syntax region javascriptLineComment start=+\/\/+ end=+$+ keepend contains=javaScriptCommentTodo,@Spell
 syntax region javascriptStringD     start=+"+  skip=+\\\\\|\\$"+  end=+"+  contains=javaScriptSpecial,@htmlPreproc
 syntax region javascriptStringS     start=+'+  skip=+\\\\\|\\$'+  end=+'+  contains=javaScriptSpecial,@htmlPreproc
-syntax keyword JavascriptCommentTodo TODO FIXME XXX HACK
+syntax keyword JavascriptCommentTodo TODO FIXME XXX HACK DEPRECATED ry
 syntax keyword JavascriptOperator delete new in instanceof typeof
 syntax keyword JavascriptSource import export
 syntax keyword JavascriptType var const void arguments
@@ -28,18 +27,19 @@ syntax keyword JavascriptNull null undefined
 
 "" Statement Keywords
 syntax keyword javaScriptConditional    if else
-syntax keyword javaScriptRepeat         do while for map each app db req res config console angular grunt resource com options
-syntax keyword javaScriptBranch         this break continue switch case default return when otherwise window document package module require events
+syntax keyword javaScriptRepeat         do while for map each app db req res config console angular grunt resource com options socket
+syntax keyword javaScriptBranch         this break continue switch case default return when otherwise window document package module require events setTimeout setInterval define require
 syntax keyword javaScriptTest           beforeEach before afterEach after
 syntax keyword javaScriptExpectation    expect to should it describe subject 
 syntax keyword javaScriptDomEvent       click dblClick hover mousenter mouseleave focus blur
 syntax keyword javaScriptDomName        el div span ul ol li label
 syntax keyword javaScriptStatement      try catch throw with finally
-syntax keyword javaScriptGlobalObjects  Array Boolean Date function Function Infinity Math Number NaN Object Packages RegExp String Undefined JSON self exports
+syntax keyword javaScriptGlobalObjects  Array Boolean Date function prototype Function Infinity Math Number NaN Object Packages RegExp String Undefined JSON self exports
 syntax keyword javaScriptExceptions     Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
 
 "" angular and custom keywords
 syntax keyword JavascriptAngularKeyword restrict transclude link templateUrl provider service factory controller directive value run inject injector scope
+syntax keyword JavascriptAngularKeywordImportant rootScope
 syntax keyword JavascriptProject pup
 syntax keyword JavascriptPromise then defer deferred 
 syntax keyword JavascriptDeferred resolve reject promise
@@ -59,6 +59,7 @@ hi javaScriptRegexpString  guifg=#aa6600 ctermfg=94
 hi javaScriptConditional   guifg=#ff0007 gui=bold ctermfg=160
 hi javaScriptRepeat        guifg=#ff0007 gui=bold ctermfg=117
 hi javaScriptAngularKeyword guifg=#ff0007 gui=bold ctermfg=117
+hi javaScriptAngularKeywordImportant gui=bold ctermfg=116
 hi javaScriptAngularProject guifg=#ff0007 gui=bold ctermfg=117
 hi javaScriptGlobalObjects guifg=#ff0086 ctermfg=13
 hi JavascriptOperator      guifg=#ff0086 ctermfg=13
