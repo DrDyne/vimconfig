@@ -21,20 +21,22 @@ syntax region javascriptStringS     start=+'+  skip=+\\\\\|\\$'+  end=+'+  conta
 syntax keyword JavascriptCommentTodo TODO FIXME XXX HACK DEPRECATED ry
 syntax keyword JavascriptOperator delete new in instanceof typeof
 syntax keyword JavascriptSource import export
-syntax keyword JavascriptType var const void arguments
+syntax keyword JavascriptType var let const void arguments
 syntax keyword JavascriptBoolean true false
 syntax keyword JavascriptNull null undefined
 
 "" Statement Keywords
 syntax keyword javaScriptConditional    if else
-syntax keyword javaScriptRepeat         do while for map each app db req res config console angular grunt resource com options socket
+syntax keyword javaScriptRepeat         do while for map each app db req res config console angular grunt resource com options socket export import class extends React props state propTypes defaultProps
 syntax keyword javaScriptBranch         this break continue switch case default return when otherwise window document package module require events setTimeout setInterval define require
 syntax keyword javaScriptTest           beforeEach before afterEach after
 syntax keyword javaScriptExpectation    expect to should it describe subject 
 syntax keyword javaScriptDomEvent       click dblClick hover mousenter mouseleave focus blur
 syntax keyword javaScriptDomName        el div span ul ol li label
 syntax keyword javaScriptStatement      try catch throw with finally
-syntax keyword javaScriptGlobalObjects  Array Boolean Date function prototype Function Infinity Math Number NaN Object Packages RegExp String Undefined JSON self exports
+"" no color yet
+syntax keyword javaScriptReact          constructor render componentDidMount componentWillMount componentWillReceiveProps 
+syntax keyword javaScriptGlobalObjects  Array Boolean Date function prototype Function Infinity Math Number NaN Object Packages RegExp String Undefined JSON self exports 
 syntax keyword javaScriptExceptions     Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
 
 "" angular and custom keywords
